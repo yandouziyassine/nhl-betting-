@@ -69,18 +69,18 @@ def get_team_stat(team_name, season_id, stat_key):
             return data['data'][0].get(stat_key, None)
     return None
 
-# Obtenir les statistiques nécessaires
+# season data
 season_id = "20232024"
 
-#pourcentage de victoire
+#% of victories
 a1 = calculate_victory_percentage(season_id, team_name1)
 a2 = calculate_victory_percentage(season_id, team_name2)
 
-#but contre
+#goal against
 b1 = get_team_stat(team_name1, season_id, "goalsAgainstPerGame")
 b2 = get_team_stat(team_name2, season_id, "goalsAgainstPerGame")
 
-#but pour
+#goal for
 c1 = get_team_stat(team_name1, season_id, "goalsForPerGame")
 c2 = get_team_stat(team_name2, season_id, "goalsForPerGame")
 
@@ -88,11 +88,11 @@ c2 = get_team_stat(team_name2, season_id, "goalsForPerGame")
 d1 = get_team_stat(team_name1, season_id, "faceoffWinPct")
 d2 = get_team_stat(team_name2, season_id, "faceoffWinPct")
 
-#tir pour
+#shoot against
 e1 = get_team_stat(team_name1, season_id, "shotsForPerGame")
 e2 = get_team_stat(team_name2, season_id, "shotsForPerGame")
 
-#tir contre
+#shoot for
 f1 = get_team_stat(team_name1, season_id, "shotsAgainstPerGame")
 f2 = get_team_stat(team_name2, season_id, "shotsAgainstPerGame")
 
@@ -100,11 +100,11 @@ f2 = get_team_stat(team_name2, season_id, "shotsAgainstPerGame")
 h1 = get_team_stat(team_name1, season_id, "powerPlayPct")
 h2 = get_team_stat(team_name2, season_id, "powerPlayPct")
 
-# Calculer les pourcentages d'arrêt
+# Calculate % of bock by the goalkeeper
 g1 = 1 - b1 / f1 if b1 and f1 else None
 g2 = 1 - b2 / f2 if b2 and f2 else None
 
-# Calculer la cote
+# Calculate the odds
 cote = -10.67 + ((12.21844622716187 * g1) + (0.43665 * g2)) + \
        ((0.901 * d1) + (-0.1217 * d2)) + \
        ((-0.8187919 * c1) + (0.5263939 * c2)) + \
@@ -112,7 +112,7 @@ cote = -10.67 + ((12.21844622716187 * g1) + (0.43665 * g2)) + \
        ((0.756 * a1) + (0.196 * a2)) + \
        ((-0.197 * h1) + (0.0101 * h2))
 
-# Afficher les résultats
+# result
 print("Cote calculée :", cote)
 print(f"a1: {a1}, a2: {a2}")
 print(f"b1: {b1}, b2: {b2}")
