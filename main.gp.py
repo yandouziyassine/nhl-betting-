@@ -45,7 +45,7 @@ team_name2 = teams.get(team_id2)
 print(f"Équipe 1 : {team_name1}")
 print(f"Équipe 2 : {team_name2}")
 
-# Fonction pour calculer le pourcentage de victoires
+# Function to calculate the % of victory
 def calculate_victory_percentage(team_id, team_name):
     url = f"https://api.nhle.com/stats/rest/en/team/summary?cayenneExp=seasonId%3D{team_id}%20and%20teamFullName%3D%22{team_name}%22"
     response = requests.get(url)
@@ -59,7 +59,7 @@ def calculate_victory_percentage(team_id, team_name):
                 return wins / games_played
     return None
 
-# Autres fonctions générales
+# Function for other data
 def get_team_stat(team_name, season_id, stat_key):
     url = f"https://api.nhle.com/stats/rest/en/team/summary?cayenneExp=teamFullName%3D%22{team_name}%22%20and%20seasonId%3D{season_id}"
     response = requests.get(url)
